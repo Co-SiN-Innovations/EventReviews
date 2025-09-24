@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 270 74% 15%; /* #1F0B44 */
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 270 74% 15%; /* #1F0B44 */
+    --popover: 0 0% 100%; /* #FFFFFF */
+    --popover-foreground: 270 74% 15%; /* #1F0B44 */
+    --primary: 270 83% 61%; /* #A64AEE */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --secondary: 270 47% 28%; /* #3D256A */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+    --muted: 270 20% 90%;
+    --muted-foreground: 270 30% 40%;
+    --accent: 32 91% 59%; /* #F69A36 */
+    --accent-foreground: 270 74% 15%; /* #1F0B44 */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
+    --border: 270 30% 85%;
+    --input: 270 30% 85%;
+    --ring: 270 83% 61%; /* #A64AEE */
+    --chart-1: 270 83% 61%; /* #A64AEE */
+    --chart-2: 270 47% 28%; /* #3D256A */
+    --chart-3: 32 91% 59%; /* #F69A36 */
+    --chart-4: 270 83% 75%; /* Lighter #A64AEE */
+    --chart-5: 32 91% 75%; /* Lighter #F69A36 */
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 100%; /* #FFFFFF */
+    --sidebar-foreground: 270 74% 15%; /* #1F0B44 */
+    --sidebar-primary: 270 83% 61%; /* #A64AEE */
+    --sidebar-primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --sidebar-accent: 270 20% 95%;
+    --sidebar-accent-foreground: 270 74% 15%; /* #1F0B44 */
+    --sidebar-border: 270 30% 85%;
+    --sidebar-ring: 270 83% 61%; /* #A64AEE */
+  }
+  .dark {
+    --background: 270 74% 15%; /* #1F0B44 */
+    --foreground: 0 0% 100%; /* #FFFFFF */
+    --card: 270 47% 28%; /* #3D256A */
+    --card-foreground: 0 0% 100%; /* #FFFFFF */
+    --popover: 270 47% 28%; /* #3D256A */
+    --popover-foreground: 0 0% 100%; /* #FFFFFF */
+    --primary: 270 83% 61%; /* #A64AEE */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --secondary: 270 47% 28%; /* #3D256A */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+    --muted: 270 47% 20%;
+    --muted-foreground: 270 30% 70%;
+    --accent: 32 91% 59%; /* #F69A36 */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
+    --border: 270 47% 35%;
+    --input: 270 47% 35%;
+    --ring: 270 83% 61%; /* #A64AEE */
+    --chart-1: 270 83% 61%; /* #A64AEE */
+    --chart-2: 270 47% 28%; /* #3D256A */
+    --chart-3: 32 91% 59%; /* #F69A36 */
+    --chart-4: 270 83% 75%; /* Lighter #A64AEE */
+    --chart-5: 32 91% 75%; /* Lighter #F69A36 */
+    --sidebar-background: 270 47% 28%; /* #3D256A */
+    --sidebar-foreground: 0 0% 100%; /* #FFFFFF */
+    --sidebar-primary: 270 83% 61%; /* #A64AEE */
+    --sidebar-primary-foreground: 0 0% 100%; /* #FFFFFF */
+    --sidebar-accent: 270 47% 35%;
+    --sidebar-accent-foreground: 0 0% 100%; /* #FFFFFF */
+    --sidebar-border: 270 47% 35%;
+    --sidebar-ring: 270 83% 61%; /* #A64AEE */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+

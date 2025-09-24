@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 270 74% 15%; /* #1F0B44 */
+
+    --card: 0 0% 100%; /* #FFFFFF */
+    --card-foreground: 270 74% 15%; /* #1F0B44 */
+
+    --popover: 0 0% 100%; /* #FFFFFF */
+    --popover-foreground: 270 74% 15%; /* #1F0B44 */
+
+    --primary: 270 83% 61%; /* #A64AEE */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --secondary: 270 47% 28%; /* #3D256A */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --accent: 32 91% 59%; /* #F69A36 */
+    --accent-foreground: 270 74% 15%; /* #1F0B44 */
+
+    --muted: 270 20% 90%;
+    --muted-foreground: 270 30% 40%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --border: 270 30% 85%;
+    --input: 270 30% 85%;
+    --ring: 270 83% 61%; /* #A64AEE */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 270 74% 15%; /* #1F0B44 */
+    --foreground: 0 0% 100%; /* #FFFFFF */
+
+    --card: 270 47% 28%; /* #3D256A */
+    --card-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --popover: 270 47% 28%; /* #3D256A */
+    --popover-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --primary: 270 83% 61%; /* #A64AEE */
+    --primary-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --secondary: 270 47% 28%; /* #3D256A */
+    --secondary-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --accent: 32 91% 59%; /* #F69A36 */
+    --accent-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --muted: 270 47% 20%;
+    --muted-foreground: 270 30% 70%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%; /* #FFFFFF */
+
+    --border: 270 47% 35%;
+    --input: 270 47% 35%;
+    --ring: 270 83% 61%; /* #A64AEE */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom styles for event cards */
+.event-card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1), 0 10px 15px -5px rgba(0, 0, 0, 0.05);
+}
+
+/* Custom button styles */
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #a64aee 0%, #8a3ad0 100%);
+}
+
+.btn-secondary-gradient {
+  background: linear-gradient(135deg, #3d256a 0%, #4f3380 100%);
+}
+
+.btn-accent-gradient {
+  background: linear-gradient(135deg, #f69a36 0%, #f8b061 100%);
+}
+
+/* Custom background patterns */
+.bg-pattern {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23A64AEE' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.bg-dots {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23A64AEE' fill-opacity='0.1' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Animated elements */
+.hover-lift {
+  transition: transform 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(90deg, #a64aee, #f69a36);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Pulsing animation for featured elements */
+.pulse-highlight {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Slideshow fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+

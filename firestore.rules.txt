@@ -1,0 +1,89 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "admin");
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      // Users can read their own data, admins can read all
+      allow read: if isOwner(userId) || isAdmin();
+      
+      // Users can create their own document during registration
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+      
+      // Users can update their own data, admins can update any user
+      allow update: if isOwner(userId) || isAdmin();
+      
+      // Only admins can delete user documents
+      allow delete: if isAdmin();
+    }
+    
+    // Events collection
+    match /events/{eventId} {
+      // Anyone can read events
+      allow read: if true;
+      
+      // Only admins can create, update, or delete events
+      allow create, update, delete: if isAdmin();
+    }
+    
+    // Reviews collection
+    match /reviews/{reviewId} {
+      allow read: if true;
+      
+      // Authenticated users can create reviews
+      allow create: if isAuthenticated() && 
+                     request.resource.data.userId == request.auth.uid;
+      
+      // Only the review author or admin can update/delete
+      allow update, delete: if isAdmin() || isOwner(resource.data.userId);
+    }
+    
+    // Notifications collection
+    match /notifications/{notificationId} {
+      // Users can read their own notifications or global ones
+      allow read: if isAuthenticated() && 
+                   (resource.data.userId == request.auth.uid || 
+                    resource.data.userId == "all");
+      
+      // Only admins can create notifications
+      allow create: if isAdmin();
+      
+      // Users can mark their notifications as read
+      allow update: if isAuthenticated() && 
+                     resource.data.userId == request.auth.uid && 
+                     request.resource.data.diff(resource.data).affectedKeys().hasOnly(["read"]);
+      
+      // Only admins can delete notifications
+      allow delete: if isAdmin();
+    }
+    
+    // User_events collection (for favorites, saved events, etc.)
+    match /user_events/{userEventId} {
+      // Users can read their own user_events
+      allow read: if isAuthenticated() && 
+                   resource.data.userId == request.auth.uid;
+      
+      // Users can create/update their own user_events
+      allow create, update: if isAuthenticated() && 
+                             request.resource.data.userId == request.auth.uid;
+      
+      // Users can delete their own user_events
+      allow delete: if isAuthenticated() && 
+                     resource.data.userId == request.auth.uid;
+    }
+  }
+}
+
